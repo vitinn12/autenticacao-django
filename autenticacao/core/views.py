@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import UsuarioCriarForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def perfil(request):
     return render(request, 'perfil.html')
 
@@ -33,4 +35,9 @@ def autenticar(request):
             return render (request, 'login.html')
     else:  
         return render (request, 'login.html')
+    
+def desconectar(request):
+    logout(request)
+    return redirect("index")
+    
     
