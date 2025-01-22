@@ -38,6 +38,6 @@ def autenticar(request):
     
 def desconectar(request):
     logout(request)
-    return redirect("index")
+    return render (request, 'logout.html')
     
     
